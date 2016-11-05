@@ -1,4 +1,10 @@
 eclipse.preferences.version=1
+encoding//WebContent/billCheck.jsp=UTF-8
+encoding//WebContent/cart.jsp=UTF-8
+encoding//WebContent/detail.jsp=UTF-8
+encoding//WebContent/jsp/adminBar.jsp=UTF-8
 encoding//WebContent/jsp/leftbar.jsp=UTF-8
+encoding//WebContent/listProduct.jsp=UTF-8
 encoding//WebContent/login.jsp=UTF-8
+encoding//WebContent/productAdd.jsp=UTF-8
 encoding//WebContent/register.jsp=UTF-8

@@ -51,7 +51,7 @@ public class ProductDB {
 	public Product getProductById(int pid) {
 		Product product = new Product();
 		try {
-			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM booking WHERE pid=?");
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM product WHERE pid=?");
 			pStatement.setInt(1, pid);
 			ResultSet resultSet = pStatement.executeQuery();
 			if (resultSet.next()) {
@@ -61,6 +61,17 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				try {
+					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
+					pStatement1.setInt(1, resultSet.getInt("typeID"));
+					ResultSet resultSet1 = pStatement1.executeQuery();
+					if (resultSet.next()) {
+						product.setTypeName(resultSet1.getString("typeName"));
+					}
+				} catch (SQLException e) {
+					product.setPid(0);
+					System.err.println("Error: " + e);
+				}
 			}
 		} catch (SQLException e) {
 			product.setPid(0);
@@ -83,6 +94,17 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				try {
+					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
+					pStatement1.setInt(1, resultSet.getInt("typeID"));
+					ResultSet resultSet1 = pStatement1.executeQuery();
+					if (resultSet.next()) {
+						product.setTypeName(resultSet1.getString("typeName"));
+					}
+				} catch (SQLException e) {
+					product.setPid(0);
+					System.err.println("Error: " + e);
+				}
 				productList.add(product);
 			}
 		} catch (SQLException e) {
@@ -105,6 +127,17 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				try {
+					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
+					pStatement1.setInt(1, resultSet.getInt("typeID"));
+					ResultSet resultSet1 = pStatement1.executeQuery();
+					if (resultSet.next()) {
+						product.setTypeName(resultSet1.getString("typeName"));
+					}
+				} catch (SQLException e) {
+					product.setPid(0);
+					System.err.println("Error: " + e);
+				}
 				productList.add(product);
 			}
 		} catch (SQLException e) {
@@ -112,6 +145,41 @@ public class ProductDB {
 		}
 		return productList;
 	}
+	
+	public ArrayList<Product> getProductListLimitsOrderByPID(int num) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+
+		try {
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM product ORDER BY pid DESC LIMIT ?");
+			pStatement.setInt(1, num);
+			ResultSet resultSet = pStatement.executeQuery();
+			while (resultSet.next()) {
+				Product product = new Product();
+				product.setPid(resultSet.getInt("pid"));
+				product.setpName(resultSet.getString("pname"));
+				product.setPrice(resultSet.getInt("price"));
+				product.setStatus(resultSet.getInt("status"));
+				product.setDescription(resultSet.getString("description"));
+				product.setTypeID(resultSet.getInt("typeID"));
+				try {
+					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
+					pStatement1.setInt(1, resultSet.getInt("typeID"));
+					ResultSet resultSet1 = pStatement1.executeQuery();
+					if (resultSet1.next()) {
+						product.setTypeName(resultSet1.getString("typeName"));
+					}
+				} catch (SQLException e) {
+					product.setPid(0);
+					System.err.println("Error: " + e);
+				}
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+		return productList;
+	}
+	
 	public ArrayList<Product> getProductListByTypeAndStatus(int type,int status) {
 		ArrayList<Product> productList = new ArrayList<Product>();
 
@@ -128,6 +196,17 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				try {
+					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
+					pStatement1.setInt(1, resultSet.getInt("typeID"));
+					ResultSet resultSet1 = pStatement1.executeQuery();
+					if (resultSet.next()) {
+						product.setTypeName(resultSet1.getString("typeName"));
+					}
+				} catch (SQLException e) {
+					product.setPid(0);
+					System.err.println("Error: " + e);
+				}
 				productList.add(product);
 			}
 		} catch (SQLException e) {

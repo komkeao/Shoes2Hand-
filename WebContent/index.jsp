@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.ProductType"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
+	prefix="layout"%>
+<%@ page import="model.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +21,12 @@
     <!-- bar -->
     <div class="col-md-8 col-xs-12">
     <img style="width: 100%" src="img/banner.png">
+    <c:if test="${sessionScope.userType==1}">
+		<jsp:include page="jsp/adminBar.jsp" />
+	</c:if>
+	<c:if test="${sessionScope.userType!=1}">
     <jsp:include page="jsp/bar.jsp" />
+    </c:if>
     
 
     <!-- end bar -->
@@ -29,64 +40,34 @@
       <div class="panel panel-default">
           <div class="panel-body">
           <!-- =============================================================================main============================================================================= -->
+         
           <div class="row">
-
-
-                <div class="col-sm-12 col-md-6">
+				<c:forEach items="${list}" var="item">
+												
+												
+				 <div class="col-sm-12 col-md-6">
                     <div class="thumbnail">
-                         <img src="img/picshoes/ad1.jpg" class="img-rounded" alt="Responsive image">
+                         <img src="img/${item.pid}.jpg" class="img-rounded" alt="Responsive image">
                             <div class="caption">
-                              <h4>Adidas</h4>
-                              <p>...</p>
-                      <p><a href="#" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp<input type="button" class="btn" value="500 THB" disabled></p>
+                              <h4>"${item.pName}</h4>
+                              <p>${item.description}</p>
+                      <p><a href="product?action=addToBucket&pid=${item.pid}" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp
+                          <input type="button" class="btn" value="${item.price} THB" disabled><br><br>
+                         <!--  <a href="product?action=viewDetails&pid=${item.pid}" class="btn btn-primary" role="button">รายละเอียด</a>
+                       -->
+                      </p>
                       </div>
                     </div>
                 </div>
+				</c:forEach>
 
-                
-
-                <div class="col-sm-12 col-md-6">
-                    <div class="thumbnail">
-                         <img src="img/picshoes/ad1.jpg" class="img-rounded" alt="Responsive image">
-                            <div class="caption">
-                              <h4>Adidas</h4>
-                              <p>...</p>
-                      <p><a href="#" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp<input type="button" class="btn" value="500 THB" disabled></p>
-                      </div>
-                    </div>
-                </div>
-
-                
-
-                <div class="col-sm-12 col-md-6">
-                    <div class="thumbnail">
-                         <img src="img/picshoes/ad1.jpg" class="img-rounded" alt="Responsive image">
-                            <div class="caption">
-                              <h4>Adidas</h4>
-                              <p>...</p>
-                      <p><a href="#" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp<input type="button" class="btn" value="500 THB" disabled></p>
-                      </div>
-                    </div>
-                </div>
-
-                
-
-                <div class="col-sm-12 col-md-6">
-                    <div class="thumbnail">
-                         <img src="img/picshoes/ad1.jpg" class="img-rounded" alt="Responsive image">
-                            <div class="caption">
-                              <h4>Adidas</h4>
-                              <p>...</p>
-                      <p><a href="#" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp<input type="button" class="btn" value="500 THB" disabled></p>
-                      </div>
-                    </div>
-                </div>
-
-                
-
+               
 
           </div>
-				 <!-- ================================================================================= ============================================================================= -->
+
+          <!-- =============================================================================main============================================================================= -->
+                
+
           </div>
         </div>
       </div>

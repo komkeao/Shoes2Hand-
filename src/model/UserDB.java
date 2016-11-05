@@ -5,13 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class UserDB {
 	private Connection con;
+
 	public UserDB() {
 		con = ConnectDatabase.getConnection();
 	}
-	public User login(String email,String password){
+
+	public User login(String email, String password) {
 		User user = new User();
 		String sql = "SELECT * FROM User WHERE email=? AND password=?";
 		try {
@@ -36,7 +37,8 @@ public class UserDB {
 		}
 		return user;
 	}
-	public void register(User user){
+
+	public void register(User user) {
 		String sql = "INSERT INTO User(address, TYPE, PASSWORD, email, ssn, username) "
 				+ "VALUES (?,?,?,?,?,?)";
 		try {
@@ -52,10 +54,10 @@ public class UserDB {
 		} catch (SQLException e) {
 			System.err.println("Error Insert data :" + e);
 		}
-		
-		
+
 	}
-	public User getUserProfileById(int userId){
+
+	public User getUserProfileById(int userId) {
 		User user = new User();
 		String sql = "SELECT * FROM User WHERE userID=?";
 		try {
@@ -79,6 +81,24 @@ public class UserDB {
 		}
 		return user;
 	}
+
+	public int checkEmailAvailabilities(String email) {
+		int res = 1;
+		String sql = "SELECT * FROM User WHERE email=?";
+		try {
+			PreparedStatement statement = con.prepareStatement(sql);
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				res = 0;
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Error Select data :" + e);
+		}
+		return res;
+	}
+
 	public void deleteUserById(int userId) {
 		String sql = "DELETE FROM User Where userID=?";
 		try {
