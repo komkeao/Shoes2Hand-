@@ -1,0 +1,141 @@
+package model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class ProductDB {
+	private Connection con;
+	public ProductDB() {
+		con = ConnectDatabase.getConnection();
+	}
+	public void insert(Product product){
+		try {
+			PreparedStatement pStatement = con
+					.prepareStatement("INSERT INTO product ( pname, price, status, description,typeID) VALUES (?,?,?,?,?)");
+			pStatement.setString(1, product.getpName());
+			pStatement.setInt(2, product.getPrice());
+			pStatement.setInt(3, product.getStatus());
+			pStatement.setString(4, product.getDescription());
+			pStatement.setInt(5, product.getTypeID());
+			pStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+		
+		
+	}
+	public void removeProductById(int pid) {
+		try {
+			PreparedStatement pStatement = con.prepareStatement("DELETE FROM product WHERE pid = ?");
+			pStatement.setInt(1, pid);
+			pStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+	}
+	
+	public void updateStatusById(int pid,int status) {
+		try {
+			PreparedStatement pStatement = con.prepareStatement("UPDATE product SET status = ? WHERE pid = ?");
+			pStatement.setInt(1, status);
+			pStatement.setInt(2, pid);
+			pStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+	}
+	
+	public Product getProductById(int pid) {
+		Product product = new Product();
+		try {
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM booking WHERE pid=?");
+			pStatement.setInt(1, pid);
+			ResultSet resultSet = pStatement.executeQuery();
+			if (resultSet.next()) {
+				product.setPid(pid);
+				product.setpName(resultSet.getString("pname"));
+				product.setPrice(resultSet.getInt("price"));
+				product.setStatus(resultSet.getInt("status"));
+				product.setDescription(resultSet.getString("description"));
+				product.setTypeID(resultSet.getInt("typeID"));
+			}
+		} catch (SQLException e) {
+			product.setPid(0);
+			System.err.println("Error: " + e);
+		}
+		return product;
+	}
+	public ArrayList<Product> getProductListByType(int type) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+
+		try {
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM product WHERE type = ?");
+			pStatement.setInt(1, type);
+			ResultSet resultSet = pStatement.executeQuery();
+			while (resultSet.next()) {
+				Product product = new Product();
+				product.setPid(resultSet.getInt("pid"));
+				product.setpName(resultSet.getString("pname"));
+				product.setPrice(resultSet.getInt("price"));
+				product.setStatus(resultSet.getInt("status"));
+				product.setDescription(resultSet.getString("description"));
+				product.setTypeID(resultSet.getInt("typeID"));
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+		return productList;
+	}
+	public ArrayList<Product> getProductListByStatus(int status) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+
+		try {
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM product WHERE status = ?");
+			pStatement.setInt(1, status);
+			ResultSet resultSet = pStatement.executeQuery();
+			while (resultSet.next()) {
+				Product product = new Product();
+				product.setPid(resultSet.getInt("pid"));
+				product.setpName(resultSet.getString("pname"));
+				product.setPrice(resultSet.getInt("price"));
+				product.setStatus(resultSet.getInt("status"));
+				product.setDescription(resultSet.getString("description"));
+				product.setTypeID(resultSet.getInt("typeID"));
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+		return productList;
+	}
+	public ArrayList<Product> getProductListByTypeAndStatus(int type,int status) {
+		ArrayList<Product> productList = new ArrayList<Product>();
+
+		try {
+			PreparedStatement pStatement = con.prepareStatement("SELECT * FROM product WHERE type =? AND status = ?");
+			pStatement.setInt(1, type);
+			pStatement.setInt(2, status);
+			ResultSet resultSet = pStatement.executeQuery();
+			while (resultSet.next()) {
+				Product product = new Product();
+				product.setPid(resultSet.getInt("pid"));
+				product.setpName(resultSet.getString("pname"));
+				product.setPrice(resultSet.getInt("price"));
+				product.setStatus(resultSet.getInt("status"));
+				product.setDescription(resultSet.getString("description"));
+				product.setTypeID(resultSet.getInt("typeID"));
+				productList.add(product);
+			}
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+		return productList;
+	}
+	
+	
+	
+}
