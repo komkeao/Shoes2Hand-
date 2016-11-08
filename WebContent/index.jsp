@@ -47,7 +47,7 @@
 												
 				 <div class="col-sm-12 col-md-6">
                     <div class="thumbnail">
-                         <img src="img/${item.pid}.jpg" class="img-rounded" alt="Responsive image">
+                         <img src="${item.photo}" class="img-rounded" alt="Responsive image">
                             <div class="caption">
                               <h4>"${item.pName}</h4>
                               <p>${item.description}</p>

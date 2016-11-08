@@ -1,25 +1,29 @@
 package model;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class ProductDB {
 	private Connection con;
 	public ProductDB() {
 		con = ConnectDatabase.getConnection();
 	}
-	public void insert(Product product){
+	public void insert(Product product,InputStream photo){
+		System.out.println(photo);
 		try {
 			PreparedStatement pStatement = con
-					.prepareStatement("INSERT INTO product ( pname, price, status, description,typeID) VALUES (?,?,?,?,?)");
+					.prepareStatement("INSERT INTO product ( pname, price, status, description,typeID,photo) VALUES (?,?,?,?,?,?)");
 			pStatement.setString(1, product.getpName());
 			pStatement.setInt(2, product.getPrice());
 			pStatement.setInt(3, product.getStatus());
 			pStatement.setString(4, product.getDescription());
 			pStatement.setInt(5, product.getTypeID());
+			pStatement.setBlob(6, photo);
 			pStatement.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error: " + e);
@@ -61,6 +65,10 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				String imgDataBase64 = new String(Base64.getEncoder().encode(resultSet.getBytes("photo")));
+	        	String src = "data:image/jpg;base64,";
+	        	src = src.concat(imgDataBase64);
+	        	product.setPhoto(src);
 				try {
 					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
 					pStatement1.setInt(1, resultSet.getInt("typeID"));
@@ -94,6 +102,10 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				String imgDataBase64 = new String(Base64.getEncoder().encode(resultSet.getBytes("photo")));
+	        	String src = "data:image/jpg;base64,";
+	        	src = src.concat(imgDataBase64);
+	        	product.setPhoto(src);
 				try {
 					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
 					pStatement1.setInt(1, resultSet.getInt("typeID"));
@@ -127,6 +139,10 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				String imgDataBase64 = new String(Base64.getEncoder().encode(resultSet.getBytes("photo")));
+	        	String src = "data:image/jpg;base64,";
+	        	src = src.concat(imgDataBase64);
+	        	product.setPhoto(src);
 				try {
 					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
 					pStatement1.setInt(1, resultSet.getInt("typeID"));
@@ -161,6 +177,10 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				String imgDataBase64 = new String(Base64.getEncoder().encode(resultSet.getBytes("photo")));
+	        	String src = "data:image/jpg;base64,";
+	        	src = src.concat(imgDataBase64);
+	        	product.setPhoto(src);
 				try {
 					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
 					pStatement1.setInt(1, resultSet.getInt("typeID"));
@@ -196,6 +216,10 @@ public class ProductDB {
 				product.setStatus(resultSet.getInt("status"));
 				product.setDescription(resultSet.getString("description"));
 				product.setTypeID(resultSet.getInt("typeID"));
+				String imgDataBase64 = new String(Base64.getEncoder().encode(resultSet.getBytes("photo")));
+	        	String src = "data:image/jpg;base64,";
+	        	src = src.concat(imgDataBase64);
+	        	product.setPhoto(src);
 				try {
 					PreparedStatement pStatement1 = con.prepareStatement("SELECT * FROM producttype WHERE typeID=?");
 					pStatement1.setInt(1, resultSet.getInt("typeID"));

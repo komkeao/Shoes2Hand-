@@ -32,7 +32,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<!-- ============================================================================fromlogin============================================================================= -->
-							<form class="form-horizontal">
+							<form method="post" action="product" enctype="multipart/form-data" class="form-horizontal" >
 								<div align="center">
 									<h2>เพิ่มสินค้า</h2>
 								</div>
@@ -43,7 +43,7 @@
 										: </label>
 									<div class="col-sm-4">
 										<input type="file" class="form-control"
-											name="exampleInputFile">
+											name="photo">
 									</div>
 								</div>
 
