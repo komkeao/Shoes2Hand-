@@ -22,25 +22,25 @@
 				<!-- end bar -->
 				<div class="row">
 					<!-- แถบซ้าย -->
-					<jsp:include page="jsp/leftbar.jsp" />
 					<!-- จบแถบซ้าย -->
 					<!-- แถบขวา -->
-					<div class=" col-md-8">
+					<div class=" col-md-12">
 						<br> <br>
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<!-- ============================================================================fromlogin============================================================================= -->
-								<form action="account" method="post">
+								<form action="account" method="post" class="form-horizontal">
 									<input type="hidden" name="action" value="login" />
+									<div align="center"><h2>เข้าสู่ระบบ</h2></div><br><br>
 									<div class="form-group">
-										<label for="exampleInputEmail1">Email address</label> <input
+										<label for="exampleInputEmail1" class="col-md-4 control-label">Email address</label><div class="col-md-6"> <input
 											type="email" name="email" class="form-control"
-											id="exampleInputEmail1" placeholder="Email">
+											id="exampleInputEmail1" placeholder="Email"></div>
 									</div>
 									<div class="form-group">
-										<label for="exampleInputPassword1">Password</label> <input
+										<label for="exampleInputPassword1" class="col-md-4 control-label">Password</label> <div class="col-md-6"><input
 											type="password" name="password" class="form-control"
-											id="exampleInputPassword1" placeholder="Password">
+											id="exampleInputPassword1" placeholder="Password"></div>
 									</div>
 									<div align="center">
 										<button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>

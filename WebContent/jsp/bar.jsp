@@ -38,21 +38,21 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">ยี่ห้อ<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Adidas</a></li>
-							<li><a href="#">Nike</a></li>
-							<li><a href="#">Puma</a></li>
-							<li><a href="#">Converse</a></li>
-							<li><a href="#">Onitsuka Tiger</a></li>
-							<li><a href="#">Asics</a></li>
+						<c:forEach items="${productType}" var="item">
+						<li><a href="search?action=byType&type=${item.typeID}">${item.typeName}</a></li>
+				
+						</c:forEach>
+							
 						</ul></li>
 			</ul>
-			<form class="navbar-form navbar-right">
-				<button type="button" class="btn btn-default" onclick="location.href='cart.jsp'">
+			<form class="navbar-form navbar-right" action="search">
+				<button type="button" class="btn btn-default" onclick="location.href='cart'">
 					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
 				</button>
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" name="word" placeholder="Search">
 				</div>
+				<input type="hidden" name="action" value="searchword">
 				<button type="submit" class="btn btn-default">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					ค้นหา

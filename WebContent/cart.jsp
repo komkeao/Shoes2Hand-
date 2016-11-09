@@ -53,6 +53,29 @@
                     </div>
                 </div>
           </div>
+          
+          
+          <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="thumbnail">
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="thumbnail">
+                            <img src="img/picshoes/n2.jpg" class="img-rounded" alt="Responsive image">
+                          </div>
+                      </div>
+                      <div class="caption">
+                              <h4>Nike</h4>
+                              <p>------</p>
+                          <p><a href="#" class="btn btn-danger" role="button">ลบ</a>&nbsp&nbsp
+                          <input type="button" class="btn" value="ราคา : 700 THB" disabled>
+                      </p>
+                    </div>
+                            
+                      </div>
+                    </div>
+                </div>
+          </div>
 
 
 
@@ -64,7 +87,7 @@
             <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
             <div class="input-group">
               <div class="input-group-addon">จำนวนเงินทั้งหมด</div>
-                <input type="text" class="form-control" id="exampleInputAmount" value="500" disabled>
+                <input type="text" class="form-control" id="exampleInputAmount" value="1200" disabled>
               <div class="input-group-addon">บาท</div>
             </div>
       </div><br><br><input type="file" class="form-control" name="exampleInputFile">

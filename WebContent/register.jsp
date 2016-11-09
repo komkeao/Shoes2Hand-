@@ -23,58 +23,61 @@
 				<!-- end bar -->
 				<div class="row">
 					<!-- แถบซ้าย -->
-					<jsp:include page="jsp/leftbar.jsp" />
+					
 					<!-- จบแถบซ้าย -->
 					<!-- แถบขวา -->
-					<div class=" col-md-8">
+					<div class=" col-md-12">
 						<br>
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<!-- ============================================================================fromlogin============================================================================= -->
-								<form class="form-inline" action="account" method="post">
+								<form class="form-horizontal" action="account" method="post">
 									<div align="center">
 										<h2>สมัครสมาชิก</h2>
 									</div>
 									<br> <input type="hidden" name="action" value="register" />
 									<div class="form-group">
-										<label for="exampleInputName2">ชื่อผู้ใช้ : </label> <input
-											type="text" name="username" class="form-control"
-											id="exampleInputName2" placeholder="ชื่อผู้ใช้">
+										<label for="exampleInputName2" class="col-md-3 control-label">ชื่อผู้ใช้ : </label> 
+										<div class="col-md-4">
+											<input type="text" name="username" class="form-control" id="exampleInputName2" placeholder="ชื่อผู้ใช้">
+										</div>
 									</div>
-									<br> <br>
 
 									<div class="form-group">
-										<label for="exampleInputEmail2">รหัสผ่าน : </label> <input
-											type="password" name="password" class="form-control"
-											id="exampleInputEmail2" placeholder="รหัสผ่าน" size="15">
+											<div class="form-inline">
+												<label for="exampleInputEmail2" class="col-md-3 control-label">รหัสผ่าน : </label> 
+													<div class="col-md-2">
+														<input type="password" name="password" class="form-control" id="exampleInputEmail2" placeholder="รหัสผ่าน" size="15">
+													</div>
+
+												<label for="exampleInputEmail2" class="col-md-3 control-label">ยืนยันรหัสผ่าน : </label> 
+													<div class="col-md-2">
+														<input type="password" name="cpassword" class="form-control" id="exampleInputEmail2" placeholder="ยืนยันรหัสผ่าน" size="15">
+														</div>
+
+											</div>
 									</div>
-									&nbsp&nbsp&nbsp&nbsp&nbsp
 
 									<div class="form-group">
-										<label for="exampleInputEmail2">ยืนยันรหัสผ่าน : </label> <input
-											type="password" name="cpassword" class="form-control"
-											id="exampleInputEmail2" placeholder="ยืนยันรหัสผ่าน"
-											size="15">
+											<label for="exampleInputEmail2" class="col-md-3 control-label">SSN : </label> 
+											<div class="col-md-4">
+												<input type="text" name="ssn" class="form-control" id="exampleInputEmail2" placeholder="อีเมลล์">
+											</div>
 									</div>
-									<br> <br>
-									<div class="form-group">
-										<label for="exampleInputEmail2">SSN : </label> <input
-											type="text" name="ssn" class="form-control"
-											id="exampleInputEmail2" placeholder="อีเมลล์">
-									</div>
-									<br> <br>
-									<div class="form-group">
-										<label for="exampleInputEmail2">อีเมลล์ : </label> <input
-											type="email" name="email" class="form-control"
-											id="exampleInputEmail2" placeholder="อีเมลล์">
-									</div>
-									<br> <br>
 
 									<div class="form-group">
-										<label for="exampleInputEmail2">ที่อยู่ : </label>
+										<label for="exampleInputEmail2" class="col-md-3 control-label">อีเมลล์ : </label> 
+										<div class="col-md-4">
+											<input type="email" name="email" class="form-control"id="exampleInputEmail2" placeholder="อีเมลล์">
+										</div>
+									</div>
 
+									<div class="form-group">
+										<label for="exampleInputEmail2" class="col-md-3 control-label">ที่อยู่ : </label>
+										<div class="col-md-8">
 										<textarea class="form-control" rows="3" cols="60"
 											name="address"></textarea>
+											</div>
 									</div>
 									<br> <br>
 									<div align="center">

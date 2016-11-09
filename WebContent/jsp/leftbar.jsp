@@ -5,7 +5,7 @@
 <%@ taglib uri="http://kwonnam.pe.kr/jsp/template-inheritance"
 	prefix="layout"%>
 <%@ page import="model.*"%>
-<form action="index.php">
+<form action="search">
 	<div class=" col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -15,7 +15,7 @@
 				<div class="col-md-12">
 					<!-- ======================================================================================================================================= -->
 
-					<input type="range" name="myrange" style="" min="1" max="1000"
+					<input type="range" name="price" style="" min="1" max="1000"
 						value="1000" onchange="range.value=value">
 					<h4>
 						ราคาน้อยกว่า
@@ -35,9 +35,9 @@
 			<div class="panel-body">
 
 				<c:forEach items="${productType}" var="item">
-
-					<input type="checkbox" name="productType" value="${item.typeID}">${item.typeName}<br>
+					<input type="checkbox" name="type" value="${item.typeID}">${item.typeName}<br>
 				</c:forEach>
+				<input type="hidden" name="action" value="search">
 
 				<div align="center">
 					<input class="btn btn-warning" type="submit" value="ค้นหา">

@@ -22,12 +22,17 @@ public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ProductDB productDB = new ProductDB();
+		
 		ArrayList<Product> list = productDB.getProductListLimitsOrderByPID(10);
 		request.setAttribute("list", list);
+		
 		ProductTypeDB db= new ProductTypeDB();
+		
 		ArrayList<ProductType> productType =db.getListType();
 		request.setAttribute("productType",productType);
+		
 		RequestDispatcher view = request.getRequestDispatcher("index" + ".jsp");
 		view.forward(request, response);
 	}

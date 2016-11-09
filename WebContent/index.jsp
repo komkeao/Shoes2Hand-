@@ -49,7 +49,7 @@
                     <div class="thumbnail">
                          <img src="${item.photo}" class="img-rounded" alt="Responsive image">
                             <div class="caption">
-                              <h4>"${item.pName}</h4>
+                              <h4>${item.pName}</h4>
                               <p>${item.description}</p>
                       <p><a href="product?action=addToBucket&pid=${item.pid}" class="btn btn-warning" role="button">ใส่ตะกร้า</a>&nbsp&nbsp
                           <input type="button" class="btn" value="${item.price} THB" disabled><br><br>
@@ -60,11 +60,7 @@
                     </div>
                 </div>
 				</c:forEach>
-
-               
-
           </div>
-
           <!-- =============================================================================main============================================================================= -->
                 
 

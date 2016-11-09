@@ -89,7 +89,7 @@
 										<input type="submit" class="btn btn-primary"
 											value="เพิ่มสินค้า">
 									</div>
-									<br> <input type="hidden" name="action" value="add">
+									<br> <input type="hidden" name="action" value="insert">
 							</form>
 
 
