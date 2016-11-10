@@ -15,11 +15,11 @@
 				<div class="col-md-12">
 					<!-- ======================================================================================================================================= -->
 
-					<input type="range" name="price" style="" min="1" max="1000"
-						value="1000" onchange="range.value=value">
+					<input type="range" name="price" style="" min="${price[0]}" max="${price[1]}"
+					 onchange="range.value=value" value="${price[0]}">
 					<h4>
 						ราคาน้อยกว่า
-						<output id="range">1000</output>
+						<output id="range">${price[0]}</output>
 					</h4>
 
 

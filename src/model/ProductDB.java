@@ -32,6 +32,21 @@ public class ProductDB {
 		}
 
 	}
+	public void update(Product product) {
+		try {
+			PreparedStatement pStatement = con
+					.prepareStatement("UPDATE product SET pname=?,price=?,description=?,typeID=? WHERE pid=?");
+			pStatement.setString(1, product.getpName());
+			pStatement.setInt(2, product.getPrice());
+			pStatement.setString(3, product.getDescription());
+			pStatement.setInt(4, product.getTypeID());
+			pStatement.setInt(5, product.getPid());
+			pStatement.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+
+	}
 
 	public void removeProductById(int pid) {
 		try {
@@ -94,7 +109,37 @@ public class ProductDB {
 		}
 		return product;
 	}
-
+	public int[] getRangePrice() {
+		Product product = new Product();
+		int max=0;
+		int min=0;
+		try {
+			PreparedStatement pStatement = con
+					.prepareStatement("SELECT MAX(price) FROM product");
+			ResultSet resultSet = pStatement.executeQuery();
+			if (resultSet.next()) {
+				max=resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			product.setPid(0);
+			System.err.println("Error: " + e);
+		}
+		try {
+			PreparedStatement pStatement = con
+					.prepareStatement("SELECT MIN(price) FROM product");
+			ResultSet resultSet = pStatement.executeQuery();
+			if (resultSet.next()) {
+				min=resultSet.getInt(1);
+			}
+		} catch (SQLException e) {
+			product.setPid(0);
+			System.err.println("Error: " + e);
+		}
+		int price[]={0,0};
+		price[1]=max;
+		price[0]=min;
+		return price;
+	}
 	public ArrayList<Product> getProductListByType(int type) {
 		ArrayList<Product> productList = new ArrayList<Product>();
 

@@ -32,6 +32,7 @@ public class MainController extends HttpServlet {
 		
 		ArrayList<ProductType> productType =db.getListType();
 		request.setAttribute("productType",productType);
+		request.setAttribute("price", productDB.getRangePrice());
 		
 		RequestDispatcher view = request.getRequestDispatcher("index" + ".jsp");
 		view.forward(request, response);

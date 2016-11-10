@@ -46,6 +46,7 @@ public class SearchController extends HttpServlet {
 
 			ArrayList<ProductType> productType = db.getListType();
 			request.setAttribute("productType", productType);
+			request.setAttribute("price", productDB.getRangePrice());
 			RequestDispatcher view = request.getRequestDispatcher("index"
 					+ ".jsp");
 			view.forward(request, response);
@@ -58,6 +59,7 @@ public class SearchController extends HttpServlet {
 			request.setAttribute("list", list);
 			ArrayList<ProductType> productType = db.getListType();
 			request.setAttribute("productType", productType);
+			request.setAttribute("price", productDB.getRangePrice());
 			RequestDispatcher view = request.getRequestDispatcher("index"
 					+ ".jsp");
 			view.forward(request, response);

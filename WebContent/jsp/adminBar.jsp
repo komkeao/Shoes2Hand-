@@ -17,7 +17,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="listProduct.jsp">รายการสินค้า</a></li>
+        <li><a href="./">หน้าแรก</a></li>
         <li><a href="product?action=add">เพิ่มรายการสินค้า</a></li>
         <li><a href="billCheck.jsp">เช็คสถานะกา่รชำระเงิน</a></li>
         <li><a href="account?action=logout">ออกจากระบบ</a></li>

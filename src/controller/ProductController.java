@@ -52,31 +52,6 @@ public class ProductController extends HttpServlet {
 			productDB.insert(product, inputStream);
 			response.sendRedirect("product?action=add");
 
-		} else if (action.equals("search")) {
-			
-			int price =Integer.parseInt(request.getParameter("price"));
-			String[] typeID=request.getParameterValues("type");
-			
-			ArrayList<Product> list = productDB.getProductListByTypeAndPrice(price, typeID);
-			request.setAttribute("list", list);
-			
-			ArrayList<ProductType> productType =db.getListType();
-			request.setAttribute("productType",productType);
-			RequestDispatcher view = request.getRequestDispatcher("index" + ".jsp");
-			view.forward(request, response);
-
-		} else if (action.equals("byType")) {
-			
-			int type =Integer.parseInt(request.getParameter("type"));
-			ProductDB productDB1 = new ProductDB();
-			ArrayList<Product> list = productDB1.getProductListByType(type);
-			request.setAttribute("list", list);
-			ArrayList<ProductType> productType =db.getListType();
-			request.setAttribute("productType",productType);
-			RequestDispatcher view = request.getRequestDispatcher("index" + ".jsp");
-			view.forward(request, response);
-			
-
 		} else if (action.equals("updateStatus")) {
 
 		} else if (action.equals("addType")) {
@@ -94,16 +69,32 @@ public class ProductController extends HttpServlet {
 					.getRequestDispatcher("productAdd.jsp");
 			view.forward(request, response);
 			
-		} else if(action.equals("searchword")){
-			
-			String str =request.getParameter("word");
-			ProductDB productDB1 = new ProductDB();
-			ArrayList<Product> list = productDB1.searchProduct(str);
-			request.setAttribute("list", list);
-			ArrayList<ProductType> productType =db.getListType();
-			request.setAttribute("productType",productType);
-			RequestDispatcher view = request.getRequestDispatcher("index" + ".jsp");
+		}else if(action.equals("edit")) {
+			int pid =Integer.parseInt(request.getParameter("pid"));
+			Product product=productDB.getProductById(pid);
+			ArrayList<ProductType> productType = db.getListType();
+			request.setAttribute("productType", productType);
+			request.setAttribute("product", product);
+			RequestDispatcher view = request
+					.getRequestDispatcher("productEdit.jsp");
 			view.forward(request, response);
+			
+		}else if(action.equals("edited")) {
+			Product product = new Product();
+
+			product.setDescription(new String(request.getParameter(
+					"description").getBytes("ISO8859_1"), "utf-8"));
+			product.setpName(new String(request.getParameter("name").getBytes(
+					"ISO8859_1"), "utf-8"));
+			product.setPrice(Integer.parseInt(request.getParameter("price")));
+			product.setStatus(0);
+			product.setPid(Integer.parseInt(request.getParameter("pid")));
+			product.setTypeID(Integer.parseInt(request.getParameter("type")));
+			productDB.update(product);
+			response.sendRedirect("./");			
+		}else if(action.equals("delete")){
+			productDB.removeProductById(Integer.parseInt(request.getParameter("pid")));
+			response.sendRedirect("./");
 		}
 
 	}
