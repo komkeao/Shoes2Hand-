@@ -19,8 +19,6 @@ public class UserController extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "";
@@ -96,6 +94,7 @@ public class UserController extends HttpServlet {
 				HttpSession sess = request.getSession();
 				sess.setAttribute("name", user.getUsername());
 				sess.setAttribute("userType", user.getType());
+				sess.setAttribute("userId", user.getUserID());
 				response.sendRedirect("./");
 
 			}

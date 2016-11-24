@@ -4,8 +4,14 @@ public class Bill {
 	private int bid;
 	private String bookingTime;
 	private String payTime;
-	private String userID;
-	private String sendAddress;
+	private int userID;
+	private String sendAddress;public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	private String photo;
 	public String getSendAddress() {
 		return sendAddress;
 	}
@@ -30,10 +36,10 @@ public class Bill {
 	public void setPayTime(String payTime) {
 		this.payTime = payTime;
 	}
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 }

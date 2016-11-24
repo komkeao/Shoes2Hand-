@@ -25,16 +25,15 @@ public class ProductController extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		ProductDB productDB = new ProductDB();
-		ProductTypeDB db= new ProductTypeDB();
+		ProductTypeDB db = new ProductTypeDB();
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "";
 		}
-		
 		if (action.equals("insert")) {
-			
+
 			Product product = new Product();
 			InputStream inputStream = null;
 			Part filePart = request.getPart("photo");
@@ -52,8 +51,6 @@ public class ProductController extends HttpServlet {
 			productDB.insert(product, inputStream);
 			response.sendRedirect("product?action=add");
 
-		} else if (action.equals("updateStatus")) {
-
 		} else if (action.equals("addType")) {
 			ProductType productType = new ProductType();
 			productType.setTypeName(new String(request.getParameter("typeName")
@@ -61,25 +58,25 @@ public class ProductController extends HttpServlet {
 			db.insert(productType);
 
 			response.sendRedirect("product?action=add");
-		} else if(action.equals("add")) {
+		} else if (action.equals("add")) {
 
 			ArrayList<ProductType> productType = db.getListType();
 			request.setAttribute("productType", productType);
 			RequestDispatcher view = request
 					.getRequestDispatcher("productAdd.jsp");
 			view.forward(request, response);
-			
-		}else if(action.equals("edit")) {
-			int pid =Integer.parseInt(request.getParameter("pid"));
-			Product product=productDB.getProductById(pid);
+
+		} else if (action.equals("edit")) {
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			Product product = productDB.getProductById(pid);
 			ArrayList<ProductType> productType = db.getListType();
 			request.setAttribute("productType", productType);
 			request.setAttribute("product", product);
 			RequestDispatcher view = request
 					.getRequestDispatcher("productEdit.jsp");
 			view.forward(request, response);
-			
-		}else if(action.equals("edited")) {
+
+		} else if (action.equals("edited")) {
 			Product product = new Product();
 
 			product.setDescription(new String(request.getParameter(
@@ -91,9 +88,10 @@ public class ProductController extends HttpServlet {
 			product.setPid(Integer.parseInt(request.getParameter("pid")));
 			product.setTypeID(Integer.parseInt(request.getParameter("type")));
 			productDB.update(product);
-			response.sendRedirect("./");			
-		}else if(action.equals("delete")){
-			productDB.removeProductById(Integer.parseInt(request.getParameter("pid")));
+			response.sendRedirect("./");
+		} else if (action.equals("delete")) {
+			productDB.removeProductById(Integer.parseInt(request
+					.getParameter("pid")));
 			response.sendRedirect("./");
 		}
 

@@ -9,9 +9,14 @@ public class BillDetails {
 	private String sendAddress;	
 	private int userID;
 	private String username;
-	private String pname;
+	private String photo;
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	private String price;
-	private String description;
 	
 	//private User user;
 	
@@ -38,23 +43,11 @@ public class BillDetails {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPname() {
-		return pname;
-	}
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
 	public String getPrice() {
 		return price;
 	}
 	public void setPrice(String price) {
 		this.price = price;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	public void setSendAddress(String sendAddress) {
 		this.sendAddress = sendAddress;

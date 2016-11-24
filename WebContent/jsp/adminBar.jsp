@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav">
         <li><a href="./">หน้าแรก</a></li>
         <li><a href="product?action=add">เพิ่มรายการสินค้า</a></li>
-        <li><a href="billCheck.jsp">เช็คสถานะกา่รชำระเงิน</a></li>
+        <li><a href="bill">เช็คสถานะกา่รชำระเงิน</a></li>
         <li><a href="account?action=logout">ออกจากระบบ</a></li>
       </ul>
       

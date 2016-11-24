@@ -54,7 +54,7 @@
 													<p>${item.description}</p>
 													<p>
 														<c:if test="${sessionScope.userType!=1}">
-															<a href="product?action=addToBucket&pid=${item.pid}"
+															<a href="cart?action=addToBucket&pid=${item.pid}"
 															class="btn btn-warning" role="button">ใส่ตะกร้า</a>
 														</c:if>
 														<c:if test="${sessionScope.userType==1}">

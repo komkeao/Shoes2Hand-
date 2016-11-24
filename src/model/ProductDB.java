@@ -145,7 +145,7 @@ public class ProductDB {
 
 		try {
 			PreparedStatement pStatement = con
-					.prepareStatement("SELECT * FROM product WHERE typeID = ?");
+					.prepareStatement("SELECT * FROM product WHERE typeID = ? AND status=0 ");
 			pStatement.setInt(1, type);
 			ResultSet resultSet = pStatement.executeQuery();
 			while (resultSet.next()) {
@@ -186,7 +186,7 @@ public class ProductDB {
 
 		try {
 			PreparedStatement pStatement = con
-					.prepareStatement("SELECT * FROM product WHERE pname LIKE ?");
+					.prepareStatement("SELECT * FROM product WHERE pname LIKE ? AND status=0 ");
 			pStatement.setString(1, "%"+text+"%");
 			ResultSet resultSet = pStatement.executeQuery();
 			while (resultSet.next()) {
@@ -268,7 +268,7 @@ public class ProductDB {
 
 		try {
 			PreparedStatement pStatement = con
-					.prepareStatement("SELECT * FROM product ORDER BY pid DESC LIMIT ?");
+					.prepareStatement("SELECT * FROM product WHERE status=0 ORDER BY pid DESC LIMIT ? ");
 			pStatement.setInt(1, num);
 			ResultSet resultSet = pStatement.executeQuery();
 			while (resultSet.next()) {
@@ -350,7 +350,7 @@ public class ProductDB {
 			String[] status) {
 		ArrayList<Product> productList = new ArrayList<Product>();
 		try {
-			String str = "SELECT * FROM product WHERE price <=? ";
+			String str = "SELECT * FROM product WHERE price <=? AND status=0 ";
 			if (status != null) {
 				for (int i = 0; i < 1; i++) {
 					if (i == 0) {
